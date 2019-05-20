@@ -8,20 +8,26 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements IPath {
+
+    private DecorFrameLayout layout;
+    private Pager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.test).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("test", "button click");
-                    }
-                }
-        );
+        layout = findViewById(R.id.layout);
+        layout.setPath(this);
+        pager = findViewById(R.id.pager);
+    }
+
+    @Override
+    public void show(Map<Integer, List<DecorFrameLayout.Record>> map) {
+        pager.show(map);
     }
 }

@@ -2,16 +2,13 @@
 <com.szy.multitouch.DecorFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
+    <com.szy.multitouch.Pager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <Button
-        android:id="@+id/test"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="#00ff00"
+        android:layout_height="match_parent"
         />
 </com.szy.multitouch.DecorFrameLayout>

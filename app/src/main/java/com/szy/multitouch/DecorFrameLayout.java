@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class DecorFrameLayout extends FrameLayout {
 
+    private IPath path;
+
     private Map<Integer, List<Record>> recordMap = new HashMap<>();
 
     public DecorFrameLayout(Context context) {
@@ -96,6 +98,9 @@ public class DecorFrameLayout extends FrameLayout {
                         + " " + event.getSize()
                         + " " + event.getPressure());
                 handleEvent(event, pointId, pointIndex);
+                if (path != null) {
+                    path.show(recordMap);
+                }
                 break;
             default:
                 break;
@@ -113,17 +118,29 @@ public class DecorFrameLayout extends FrameLayout {
         List<Record> list = recordMap.get(pointId);
         if (list == null) {
             list = new ArrayList<>();
+            recordMap.put(pointId, list);
         }
-        list.add(new Record(event.getX(pointIndex), event.getY(pointIndex)));
+        list.add(new Record(event.getX(pointIndex), event.getY(pointIndex), event.getSize(pointIndex),
+                event.getPressure(pointIndex), System.currentTimeMillis()));
     }
 
     public static class Record {
         public float x;
         public float y;
+        public float s;
+        public float p;
+        public long t;
 
-        public Record(float x, float y) {
+        public Record(float x, float y, float s, float p, long t) {
             this.x = x;
             this.y = y;
+            this.s = s;
+            this.p = p;
+            this.t = t;
         }
+    }
+
+    public void setPath(IPath path) {
+        this.path = path;
     }
 }
