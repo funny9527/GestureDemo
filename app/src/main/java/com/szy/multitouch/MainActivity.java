@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity implements IPath {
         layout = findViewById(R.id.layout);
         layout.setPath(this);
         pager = findViewById(R.id.pager);
+        pager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

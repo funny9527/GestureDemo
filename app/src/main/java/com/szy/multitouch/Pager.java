@@ -19,21 +19,36 @@ public class Pager extends View {
     private Map<Integer, List<DecorFrameLayout.Record>> map;
     private Paint paint = new Paint();
 
+    private int size = 0;
+
     public Pager(Context context) {
         super(context);
+        init(context);
     }
 
     public Pager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
     public Pager(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Pager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        init(context);
+    }
+
+    private void init(Context context) {
+        size = (int) Math.sqrt((double) (
+                context.getResources().getDisplayMetrics().widthPixels
+                        * context.getResources().getDisplayMetrics().widthPixels
+                        + context.getResources().getDisplayMetrics().heightPixels
+                        * context.getResources().getDisplayMetrics().heightPixels
+                ));
     }
 
     public void show(Map<Integer, List<DecorFrameLayout.Record>> map) {
@@ -58,8 +73,9 @@ public class Pager extends View {
                     lines[i++] = record.y;
                 }
 
-                Log.d("test", "lines " + lines.length);
-                paint.setStrokeWidth(list.get(0).s);
+                float width = list.get(0).s / size * 100000;
+                Log.d("test", "lines " + lines.length + "  " + size + " " + width);
+                paint.setStrokeWidth(width);
                 canvas.drawLines(lines, paint);
             }
             this.map.clear();

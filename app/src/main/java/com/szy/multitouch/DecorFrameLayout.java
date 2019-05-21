@@ -50,7 +50,6 @@ public class DecorFrameLayout extends FrameLayout {
                         + " " + event.getSize()
                         + " " + event.getPressure());
                 handleEvent(event, pointId, pointIndex);
-//                return true;
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 pointId = event.getPointerId(pointIndex);
