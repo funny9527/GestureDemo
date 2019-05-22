@@ -39,9 +39,9 @@ public class DecorFrameLayout extends FrameLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int pointIndex = event.getActionIndex();
+        int pointId = event.getPointerId(pointIndex);
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-                int pointId = event.getPointerId(pointIndex);
                 Log.d("test", "ACTION_DOWN "
                         + " " + pointIndex
                         + " " + pointId
@@ -52,7 +52,6 @@ public class DecorFrameLayout extends FrameLayout {
                 handleEvent(event, pointId, pointIndex);
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
-                pointId = event.getPointerId(pointIndex);
                 Log.d("test", "ACTION_POINTER_DOWN "
                         + " " + pointIndex
                         + " " + pointId
@@ -76,7 +75,6 @@ public class DecorFrameLayout extends FrameLayout {
                 }
                 break;
             case MotionEvent.ACTION_POINTER_UP:
-                pointId = event.getPointerId(pointIndex);
                 Log.d("test", "ACTION_POINTER_UP "
                         + " " + pointIndex
                         + " " + event.getPointerId(pointIndex)
@@ -88,7 +86,6 @@ public class DecorFrameLayout extends FrameLayout {
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                pointId = event.getPointerId(pointIndex);
                 Log.d("test", "ACTION_UP "
                         + " " + pointIndex
                         + " " + event.getPointerId(pointIndex)
