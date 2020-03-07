@@ -2,10 +2,6 @@ package com.szy.multitouch;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.List;
@@ -13,8 +9,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements IPath {
 
-    private DecorFrameLayout layout;
-    private Pager pager;
+    private GestureFrameLayout layout;
+    private DrawingView drawingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements IPath {
 
         layout = findViewById(R.id.layout);
         layout.setPath(this);
-        pager = findViewById(R.id.pager);
-        pager.setOnClickListener(new View.OnClickListener() {
+        drawingView = findViewById(R.id.layer);
+        drawingView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements IPath {
     }
 
     @Override
-    public void show(Map<Integer, List<DecorFrameLayout.Record>> map) {
-        pager.show(map);
+    public void show(Map<Integer, List<GestureFrameLayout.Record>> map) {
+        drawingView.show(map);
     }
 }
